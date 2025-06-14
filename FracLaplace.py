@@ -7,6 +7,15 @@ import matplotlib.pyplot as plt
 import scipy.io as sio
 from FracLaplaceHelper import *
 
+
+##########################################################
+# Code is inspired by https://doi.org/https://doi.org/10.1016/j.camwa.2017.05.026
+# The code that calculates the contributions form pairs of elements were translated from matlab
+# to python with the help of ChatGPT.
+
+
+
+# Pre-calulcated values generated from MatlabCode/FracLaplData.m
 data = sio.loadmat('data.mat')
 phiA, phiB, phiD = (data.get(key) for key in ['phiA','phiB','phiD'])
 tpsi1, tpsi2, tpsi3 = (data.get(key) for key in ['tpsi1', 'tpsi2', 'tpsi3'])

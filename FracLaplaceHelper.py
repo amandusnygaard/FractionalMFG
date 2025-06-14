@@ -184,6 +184,8 @@ def vertex_quad(nodl, nodm, sh_nod, p, s, psi1, psi2, areal, aream, p_c):
     return ML
 
 def pairwise_distances_with_vectors(vl, ve):
+    # generated with ChatGPT
+
     nl = vl.shape[0]
     ne = ve.shape[0]
     distsquare = np.zeros(nl*ne)

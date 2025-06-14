@@ -100,6 +100,8 @@ def StiffnessFractionalLaplaceUniform(x,h,s):
 from scipy.sparse import coo_matrix
 
 def compute_phi_1d_sparse(p, p_ref):
+    # generated with ChatGPT
+
     """
     Construct sparse interpolation matrix for 1D linear basis functions.
 

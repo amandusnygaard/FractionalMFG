@@ -29,7 +29,7 @@ normals = np.array([(1,0),(1,0),(0,-1),(0,-1),(-1,0),(-1,0),(0,1),(0,1)])
 
 nu = 1.0
 kappa = 1.0
-eps = 0
+eps = 1.0
 
 mesh = Mesh(points, elements,edges, bndrynode,normals)
 # mesh.ComputeTheta()
@@ -72,39 +72,14 @@ F1 = None
 F = [F0,F1]
 G = [G0,G1]
 
+# Need to run FracPreCalc.py first if you want to include the fractional
+# Laplace term in the right hand side with the same mesh
 data = np.load('FracLapl_075_5ref.npz')
-
-# uh,mh,diff = testMFG.Solve(H,dH,Fm,F,G, s = data['s'], nonlocaloperator='FracLapl',
-#                     As = data['fraclapl'], p_ref = data['p_ref'], func_ex=[u,m],
-#                     check_stabilization=True)
-
-# u_exact = u(mesh.p)
-# m_exact = m(mesh.p)
-
-# print(IntegrateL2(u,uh,mesh))
-# print(IntegrateL2(m,mh,mesh))
-# print(IntegrateH1(u,uh,mesh))
-# print(IntegrateH1(m,mh,mesh))
-
-# fig = plt.figure()
-# ax = fig.add_subplot(111,projection='3d')
-
-# ax.scatter(mesh.p[0,:],mesh.p[1,:],u_exact)
-# ax.scatter(mesh.p[0,:],mesh.p[1,:],uh)
-# plt.show()
-
-# fig = plt.figure()
-# ax = fig.add_subplot(111,projection='3d')
-
-# ax.scatter(mesh.p[0,:],mesh.p[1,:],m_exact)
-# ax.scatter(mesh.p[0,:],mesh.p[1,:],mh)
-# plt.show()
 
 err_u_L2,err_u_H1,err_m_L2,err_m_H1, h_list,stabilization = ConvergenceTest(mesh,eps,nu,kappa,H,dH,Fm,F,G,
                                                               sol = [u,m],diff_sol = [Du,Dm], sol_norms = [L2_u,H1_u,L2_m,H1_m],
                                                               As = data['fraclapl'], s = data['s'], p_ref = data['p_ref'],
-                                                              num_refs=4, start_ref=0,mu = 0,
-                                                              filename = 'ExperimentData/Test1_2D_075_eps.npz')
+                                                              num_refs=4, start_ref=0,mu = 0,)
 
 print(err_u_L2)
 print(err_m_L2)

@@ -148,6 +148,8 @@ def IntegrateH1(Du,uh,mesh, root = True):
 from scipy.sparse import coo_matrix
 
 def compute_phi_on_refined_mesh_sparse(p, t, p_ref):
+    # generated with ChatGPT
+
     N_ref = p_ref.shape[1]
     N_p = p.shape[1]
 
